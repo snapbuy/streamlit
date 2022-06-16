@@ -1,3 +1,4 @@
+# my_dashboard.py
 import numpy as np
 from scipy.stats import norm
 import matplotlib.pyplot as plt
@@ -19,6 +20,14 @@ data = norm_dist(mu_in, std_in, size=size)
 mu, std = norm.fit(data)
 
 # Make some plots
-...
+x = np.linspace(-40, 40, 100)
+y = norm.pdf(x, mu, std)
+
+title = f"Fit results: {mu=:.2f},  {std=:.2f}"
+
+fig, ax = plt.subplots()
+ax.hist(data, bins=50, density=True)
+ax.plot(x, y, 'k', linewidth=2)
+ax.set_title(title)
 
 st.pyplot(fig)
